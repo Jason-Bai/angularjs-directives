@@ -1,0 +1,22 @@
+angular.module('animateApp', [])
+.controller('AnimateCtrl', function ($scope, $timeout) {
+	function buildShape() {
+		var maxVelocity = 200;
+		return {
+			color: '#' + (Math.random() * 0xFFFFFF << 0).toString(16),
+			x: Math.min(380, Math.max(20, (Math.random()*380))),
+			y: Math.min(180, Math.max(20, (Math.random()*180))),
+			velX: (Math.random() * maxVelocity),
+			verY: (Math.random() * maxVelocity)
+		};
+	}
+	// Publish list of shapes on the $scope/presentationModel
+	// Then populate the list with 100 shapes randomized in position
+	// and color
+	$scope.shapes = [];
+	// Create shapes
+	for(i = 0; i < 100; i++) {
+		$scope.shapes.push(buildShape());
+	}
+	// Start timer-based, changes of the shape properties
+});
